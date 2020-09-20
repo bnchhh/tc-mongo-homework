@@ -16,14 +16,12 @@ async function createArticle(req, res, next) {
 
     res.status(201).json({ article });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 }
 
 async function updateArticle(req, res, next) {
   try {
-    console.log(req.params.articleId);
     const article = await Article.findById(req.params.articleId);
 
     if (!article) {
@@ -50,7 +48,6 @@ async function updateArticle(req, res, next) {
 
 async function getArticle(req, res, next) {
   try {
-    console.log(req.body);
     const articles = await Article.find(req.body).populate("owner");
 
     res.status(200).json(articles);
